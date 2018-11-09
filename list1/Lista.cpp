@@ -7,77 +7,77 @@ using namespace std;
 
 int cmp(char *s1, char *s2)
 {
-	int n;
-	if(strlen(s1)>strlen(s2))
-	n=strlen(s1);
+	int n ;
+	if( strlen(s1) > strlen(s2) )
+	n = strlen(s1) ;
 	else
-	n=strlen(s2);
-	for(int i=0; i<n; ++i)
+	n = strlen(s2) ;
+	for( int i = 0 ; i < n ; ++i)
 	if(s1[i]!=s2[i]) return 0;
 	return 1;
 }
 
 typedef struct LCVOR
 {
-	char name[30];
-	struct LCVOR *sl;
+	char name[30] ;
+	struct LCVOR *sl ;
 }LCVOR;
 
 void start(LCVOR **l)
 {
-	LCVOR *novi=(LCVOR*)malloc(sizeof(LCVOR));
-	gets(novi->name);
-	novi->sl=*l;
-	*l=novi;
+	LCVOR *novi = (LCVOR*)malloc(sizeof(LCVOR)) ;
+	gets( novi->name ) ;
+	novi->sl = *l ;
+	*l = novi ;
 }
 
 void end(LCVOR **l)
 {
-	LCVOR *novi=(LCVOR*)malloc(sizeof(LCVOR));
-	gets(novi->name);
-	LCVOR *t=*l;
-	if(*l==NULL)
+	LCVOR *novi = (LCVOR*)malloc(sizeof(LCVOR)) ;
+	gets( novi->name );
+	LCVOR *t = *l ;
+	if(*l == NULL)
 	{
-		novi->sl=*l;
-		*l=novi;
+		novi->sl = *l ;
+		*l = novi ;
 	}
 	else
 	{
-		while(t->sl)
-		t=t->sl;
-		t->sl=novi;
-		novi->sl=NULL;
+		while( t->sl )
+		t = t->sl ;
+		t->sl = novi ;
+		novi->sl = NULL ;
 	}
 }
 
 void obrisi(LCVOR **l)
 {
-	LCVOR *t=*l,*t1=*l;
-	char ch[30];
+	LCVOR *t = *l, *t1 = *l ;
+	char ch[30] ;
 	gets(ch);
 	
-	if(cmp(ch,t->name))
+	if( cmp( ch , t->name ) )
 	{
-		t=t->sl;
+		t = t->sl ;
 		free(*l);
-		*l=t;
+		*l = t ;
 	}
 	else
 	{
-		t=t->sl;
+		t = t->sl ;
 		while(t)
 		{
-			if(cmp(ch,t->name))
+			if( cmp( ch , t->name ) )
 			{
-				LCVOR *p=t;
-				t1->sl=t->sl;
-				t=t->sl;
+				LCVOR *p = t ;
+				t1->sl = t->sl ;
+				t = t->sl ;
 				free(p);
 			}
 			else
 			{
-				t1=t;
-				t=t->sl;
+				t1 = t ;
+				t = t->sl ;
 			}
 		}
 	}
@@ -86,39 +86,39 @@ void obrisi(LCVOR **l)
 
 void provera(LCVOR *l)
 {
-	char ch[30];
+	char ch[30] ;
 	gets(ch);
-	bool t=true;
-	while(l)
+	bool t = true ;
+	while( l )
 	{
-		if(cmp(ch,l->name))
+		if( cmp( ch , l->name ) )
 		{
-			printf("Ime je na listi.\n");
-			t=false;
-			break;
+			printf("Ime je na listi.\n") ;
+			t = false ;
+			break ;
 		}
-		l=l->sl;
+		l = l->sl ;
 	}
 	if(t)
-	printf("Ime nije na listi.\n");
+	printf("Ime nije na listi.\n") ;
 }
 
 void izbrisi(LCVOR *l)
 {
-	LCVOR *t=l->sl;
-	while(l->sl)
+	LCVOR *t = l->sl ;
+	while( l->sl )
 	{
-		if(cmp(l->name,t->name))
+		if(cmp( l->name , t->name ) )
 		{
-			LCVOR *p=t;
-			t=t->sl;
-			l->sl=t;
-			free(p);
+			LCVOR *p = t ;
+			t = t->sl ;
+			l->sl = t ;
+			free(p) ;
 		}
 		else
 		{
-			t=t->sl;
-			l=l->sl;
+			t = t->sl ;
+			l = l->sl ;
 		}
 	}
 }
@@ -127,7 +127,7 @@ void ispis(LCVOR *l)
 {
 	if(l)
 	{
-		cout << l->name << "\t" ;
+		cout << l->name << "\t"  ;
 		ispis(l->sl);
 	}
 }
@@ -147,23 +147,23 @@ void menu(int *opt)
 
 int main()
 {
-	LCVOR *l=NULL;
-	int opt=1;
+	LCVOR *l = NULL ;
+	int opt = 1 ;
 	
 	while(opt)
 	{
 		system("CLS");
-		menu(&opt);
-		switch(opt)
+		menu( &opt );
+		switch( opt )
 		{
 			case 1:
 			{
-				start(&l);	printf("Dodato na pocetak.\n");	system("PAUSE");
+				start(&l);	printf("Dodato na pocetak.\n");		system("PAUSE");
 				break;
 			}
 			case 2:
 			{
-				end(&l);	printf("Dodato na kraj.\n");	system("PAUSE");
+				end(&l);	printf("Dodato na kraj.\n");		system("PAUSE");
 				break;
 			}
 			case 3:
