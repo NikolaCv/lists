@@ -128,8 +128,20 @@ void ispis(LCVOR *l)
 	if(l)
 	{
 		cout << l->name << "\t"  ;
-		ispis(l->sl);
+		ispis( l->sl );
 	}
+}
+
+int duzina(LCVOR *l)
+{
+	int i = 1 ;
+	LCVOR *t = l;
+	while( t->sl )
+	{
+		t = t->sl ;
+		++i;
+	}
+	return i;
 }
 
 void menu(int *opt)
@@ -140,6 +152,7 @@ void menu(int *opt)
 	printf("4. Provera da li je ime na listi\n");
 	printf("5. Brisanje svih nizova istih imena\n");
 	printf("6. Ispis liste\n");
+	printf("7. Duzina liste\n");
 	printf("0. Kraj\n");
 	scanf("%d",opt);
 	fflush(stdin);
@@ -184,6 +197,10 @@ int main()
 			{
 				ispis(l);	system("PAUSE");
 				break;
+			}
+			case 7:
+			{
+				printf("Duzina liste je: %d", duzina(l));			system("PAUSE");
 			}
 		}
 	}
