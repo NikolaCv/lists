@@ -13,7 +13,7 @@ int cmp(char *s1, char *s2)
 	else
 	n = strlen(s2) ;
 	for( int i = 0 ; i < n ; ++i)
-	if(s1[i]!=s2[i]) return 0;
+	if( s1[i] != s2[i] ) return 0;
 	return 1;
 }
 
@@ -60,7 +60,7 @@ void obrisi(LCVOR **l)
 	{
 		t = t->sl ;
 		free(*l);
-		*l = t ;
+		*l = *t ;
 	}
 	else
 	{
